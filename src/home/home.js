@@ -62,8 +62,14 @@ class HomePage extends Component {
 
     loginButton(username, password) {
         login(username, password).then(res => {
-            localStorage.setItem("token", res.data.Data)
-            alert("登录成功！")
+
+            if(res.data.Msg=="login suc") {
+                localStorage.setItem("token", res.data.Data)
+                alert("登录成功！")
+            }
+            if(res.data.Msg=="login error"){
+                alert("")
+           }
         })
     }
 
@@ -71,7 +77,7 @@ class HomePage extends Component {
         this.setState({
             username: ev.target.value
         }, () => {
-            // console.log(this.state.username)
+            console.log(this.state.username)
         });
     }
 
@@ -79,7 +85,7 @@ class HomePage extends Component {
         this.setState({
             password: ev.target.value
         }, () => {
-            // console.log(this.state.password)
+            console.log(this.state.password)
         });
     }
 
